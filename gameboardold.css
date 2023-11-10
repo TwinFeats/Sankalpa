@@ -1,0 +1,484 @@
+body {
+  background-color: black;
+  color: #ffff80;
+  margin: 0;
+  padding: 0;
+}
+
+#sankalpa {
+  width: 800px;
+  height: 600px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
+#board {
+  position: relative;
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 520px;
+  height: 520px;
+  border: 3px groove #808080;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+  background-color: #181818;
+}
+
+.grid {
+  background-image: url('tiles/gridsmall.png');
+  background-size: 512px 512px;
+}
+
+#board > div, #gameboard > div {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+}
+
+.tileblue {
+  background-image: url('tiles/blue.png');
+  background-size: 64px 64px;
+}
+
+.tilegray {
+  background-image: url('tiles/gray.png');
+  background-size: 64px 64px;
+}
+
+.tilegreen {
+  background-image: url('tiles/green.png');
+  background-size: 64px 64px;
+}
+
+.tilered {
+  background-image: url('tiles/red.png');
+  background-size: 64px 64px;
+}
+
+.tileback {
+  background-image: url('tiles/back.png');
+  background-size: 64px 64px;
+}
+
+#board > div > img, #gameboard > div > img {
+  width: 64px;
+  height: 64px;
+}
+
+#hand > div {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+}
+
+#hand img {
+  width: 64px;
+  height: 64px;
+}
+
+#drophilight {
+  position: absolute;
+  display: none;
+  width: 64px;
+  height: 64px;
+}
+
+#globalButtons {
+  clear: right;
+  float: right;
+  vertical-align: top;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 15px;
+  padding-top: 5px;
+  padding-left: 10px;
+  width: 240px;
+  height: 200px;
+  box-sizing: border-box;
+  background-color: #000000;
+  text-align: center;
+  position: relative;
+}
+
+#options, #scores {
+  float: right;
+  vertical-align: top;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 15px;
+  padding-top: 5px;
+  padding-left: 10px;
+  width: 240px;
+  height: 520px;
+  box-sizing: border-box;
+  background-color: #000000;
+  border: 3px groove #808080;
+  text-align: center;
+  position: relative;
+}
+
+#scores {
+  display: none;
+}
+
+#options table {
+  border-spacing: 0px;
+}
+
+#options label {
+  color: #00ff00;
+  vertical-align: top;
+}
+
+#options tr {
+  height: 12px;
+}
+
+#options tr:nth-child(2) td {
+  padding-top: 10px;  
+}
+
+#options td {
+  color: #c0c0ff;
+  text-align: left;
+  vertical-align: top;
+}
+
+#options td:nth-child(3) {
+  padding-left: 10px;
+}
+
+#options p {
+  text-align: left;
+  color: #c0c0ff;
+}
+
+@font-face{ 
+	font-family: Samaro;
+	src: url('fonts/samaro__-webfont.eot');
+	src: url('fonts/samaro__-webfont.woff') format('woff'),
+	     url('fonts/samaro__-webfont.ttf') format('truetype'),
+	     url('fonts/samaro__-webfont.svg#webfont') format('svg');
+}
+
+#title {
+  font-family: Samaro;
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#tilesRemainingWrapper {
+  position: absolute;
+  bottom: 0px;
+  right: -3px;
+  width: 3px;
+  height: 512px;
+}
+
+#tilesRemaining {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 3px;
+  height: 100%;
+  background-color: #ffff00;
+}
+
+#tilesRemainingCounter {
+  position: absolute;
+  top: -5px;
+  left: 5px;
+}
+
+#hand {
+  position: absolute;
+  height: 64px;
+  width: 256px;
+  bottom: 3px;
+  left: 142px;
+  text-align: center;
+}
+
+#clock {
+  margin-top: 20px;
+  margin-left: 20px;
+  float: left;
+}
+
+#score {
+  margin-top: 20px;
+  margin-right: 5px;
+  float: right;
+}
+
+.buttonNormal {
+	box-shadow:inset 0px 1px 0px 0px #c1ed9c;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #9dce2c), color-stop(1, #8cb82b) );
+	background-color:#9dce2c;
+	border-top-left-radius:30px;
+	border-top-right-radius:0px;
+	border-bottom-right-radius:30px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #83c41a;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:35px;
+	line-height:35px;
+	width:74px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #689324;
+}
+
+.buttonNormal:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #8cb82b), color-stop(1, #9dce2c) );
+	background-color:#8cb82b;
+}
+
+.buttonNormal:active {
+	position:relative;
+	top:1px;
+}
+
+.buttons {
+  position: absolute;
+  bottom: 10px;
+  left: 0px;
+  width: 100%;
+  text-align: center;
+}
+
+#scores .player {
+  display: inline-block;
+  margin-top: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.player .name {
+  display: inline-block;
+  margin-top: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  width: 75%;
+  color: #ffff80;
+  box-sizing: border-box;
+}
+
+.player .score {
+  display: inline-block;
+  margin-top: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  width: 25%;
+  color: #00ff00;
+  box-sizing: border-box;
+}
+
+#help {
+  display: none;
+}
+
+#helpicon {
+  position: absolute;
+  bottom: 80px;
+  right: 25px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  z-index: 15;
+}
+
+#payicon {
+  position: absolute;
+  bottom: 80px;
+  right: 55px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+.cover {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.45;
+  z-index: 11;
+}
+
+.loading {
+  display: block;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: 334px;
+  top: 284px;
+  z-index: 12;
+  opacity: 1.0;
+}
+
+.no-close .ui-dialog-titlebar-close {
+  display: none;
+}
+
+#games {
+  display: none;
+  width: 500px;
+}
+
+#gamesWaiting {
+  min-height: 200px;
+}
+
+#gamesPlayed {
+  min-height: 200px;
+}
+
+#games h3 {
+  
+}
+
+.gamesList {
+  
+}
+
+.gameline {
+  padding-bottom: 3px;
+  cursor: pointer;
+}
+
+.gameuser {
+  color: #80ff80;
+  display: inline-block;
+  width: 250px;
+  margin-right: 10px;
+}
+
+.gamescore {
+  display: inline-block;
+  width: 40px;
+  text-align: right;
+  color: #ffff00;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.score {
+  width: 40px;
+  text-align: right;
+  color: #ffff00;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.word {
+  color: #00ffff;
+  margin-right: 10px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.game {
+  border-bottom: 1px solid #303030;
+}
+
+.gamedate {
+  display: inline-block;
+  padding-left: 10px;
+  color: #00ffff;
+}
+
+#gameResult, #gameboard {
+  display: none;
+}
+
+#gameResult .gameboard {
+  width: 128px;
+  height: 128px;
+  position: relative;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+#gameResult .gameboard .tile {
+  width: 24px;
+  height: 24px;
+  background-size: 24px 24px;
+  position: absolute;
+}
+
+#gameResult .gameboard img {
+  width: 24px;
+  height: 24px;
+  background-size: 24px 24px;
+}
+
+#gameResult td {
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.userboard {
+  display: none;
+}
+
+#gamebaord {
+  position: relative;
+  width: 512px !important;
+  height: 512px !important;
+}
+
+input[type="text"] {
+  font-size: 14px;
+}
+
+#tilebackcontainer {
+  position: relative;
+  margin: 0 auto;
+  width: 64px;
+  height: 64px;
+  z-index: 1;
+  perspective: 1000;
+}
+
+#tileback {
+  width: 100%;
+  height: 100%;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: all 0.5s linear;
+}
+
+.front, .back {
+  position: absolute !important;
+  left: 0px;
+  top: 0px;
+  width: 100% !important;
+  height: 100% !important;
+  -webkit-backface-visibility: hidden;
+}
+
+.front img, .back img {
+  position: absolute !Important;
+  left: 0px;
+  top: 0px;
+}
+
+.front {
+  -webkit-transform: rotateY(180deg);
+}

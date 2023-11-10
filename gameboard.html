@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="gameboard.css">
+    <link rel="stylesheet" type="text/css" href="jquery-ui-1.10.4.custom/css/trontastic/jquery-ui-1.10.4.custom.min.css">
+    <link rel="stylesheet" type="text/css" href="toast/css/jquery.toastmessage.css">
+    <script src="jquery-2.1.1.min.js"></script>
+    <script src="jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="jquery.toastmessage.js"></script>
+    <script src="waypoints.min.js"></script>
+    <script src="waypoints-infinite.min.js"></script>
+    <script src="game.js"></script>
+    <script src="clock.js"></script>
+    <script src="sankalpa.js"></script>
+    <title>
+    </title>
+  </head>
+  <body>
+    <div id="sankalpa">
+      <div class="cover"></div>
+      <img class="loading" src="images/ajax-loader.gif"/>
+      <div id="board">
+        <img id="drophilight" src="images/gridspot.png"/>
+        <span id="tilesRemainingWrapper">
+          <span id="tilesRemaining"><span id="tilesRemainingCounter"></span></span>
+        </span>
+      </div>
+      <div id="hand">
+      </div>
+      <div id="scores">
+        <div id="title">Sankalpa</div>
+      </div>
+      <div id="options">
+        <div class="cover"></div>
+        <div id="title">Sankalpa</div>
+        <table>
+        <tr>
+          <td><label for="audio">Sounds</label></td><td><input id="audio" type="checkbox" name="audio" value="on" checked="checked"/>
+          &nbsp;&nbsp;&nbsp;<label for="helper">Placement helper</label>&nbsp;<input type="checkbox" name="helper" value="on"/>
+          </td>
+        </tr>
+         <tr>
+           <td>Hand size</td><td><input type="radio" name="handsize" id="hand1" value="1"/><label for="hand1">1</label><br/>
+           <input type="radio" name="handsize" id="hand2" value="2"/><label for="hand2">2</label><br/>
+           <input type="radio" name="handsize" id="hand3" value="3"/><label for="hand3">3</label><br/>
+           <input type="radio" name="handsize" id="hand4" value="4"/><label for="hand4">4</label></td>
+         </tr> 
+         <tr>
+           <td>Time</td><td colspan="1"><input type="radio" name="time" id="time600" value="600"/><label for="time600">10 minutes</label><br/>
+           <input type="radio" name="time" id="time1800" value="1800"/><label for="time1800">30 minutes</label><br/>
+           <input type="radio" name="time" id="time3600" value="3600"/><label for="time3600">60 minutes</label><br/>
+           <input type="radio" name="time" id="time0" value="0"/><label for="time0">No limit</label></td>
+         </tr>
+        </table>
+        <div class="buttons">
+          <input type="button" name="play" class="buttonNormal" value="Play"/>
+        </div>
+      </div>
+      <div id="globalButtons">
+        <input type="button" name="pause" class="buttonNormal" value="Pause"/>
+        <input type="button" name="end" class="buttonNormal" value="End"/>
+        <input type="button" id="history" name="history" class="buttonNormal" value="History"/>
+      </div>
+      <div id="clock">
+        <img id="minhi" src="images/0.png"/>
+        <img id="minlo" src="images/0.png"/>
+        <img src="images/colon.png"/>
+        <img id="sechi" src="images/0.png"/>
+        <img id="seclo" src="images/0.png"/>
+      </div>
+      <div id="score"></div>
+      <img src="images/help.png" id="helpicon"/>
+      <img src="images/pay.png" id="payicon"/>
+    </div>
+    <div id="help" title="Help">
+    </div>
+    <div id="gameResult" title="Game Result">
+    </div>
+    <div id="gameboard" title="Game Board">
+    </div>
+    <audio id="startAudio">
+      <source src="audio/magicwand.mp3"/>
+    </audio>
+    <audio id="goodPlay">
+      <source src="audio/xylophone.mp3"/>
+    </audio>
+    <audio id="badPlay">
+      <source src="audio/alarmbeep.mp3"/>
+    </audio>
+  </body>
+</html>

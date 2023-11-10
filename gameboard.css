@@ -1,0 +1,53 @@
+html,
+body {
+  font-size: 24pt;
+}
+
+#gameboard {
+  padding: 1em;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  background-color: #008000;
+}
+
+#gameboard > * {
+  aspect-ratio: 1 / 1;
+  border: .2em;
+  border-style: inset;
+  border-color: #303030;
+  background-color: black;
+}
+
+#gameboard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tileblue {
+  background-image: url('tiles/blue.png');
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.tilegreen {
+  background-image: url('tiles/green.png');
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.tilered {
+  background-image: url('tiles/red.png');
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.tileback {
+  background-image: url('tiles/back.png');
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
