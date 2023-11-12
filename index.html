@@ -2,17 +2,31 @@
 <html>
 	<head>
 		<title>Sankalpa</title>
-		<link rel="stylesheet" href="gameboard.css">
+		<link rel="stylesheet" href="gameboard.css?v=1.2">
 		<script src="jsrand.min.js"></script>
-		<script src="sankalpa.js"></script>
+		<script src="sankalpa.js?v=1.5"></script>
 	</head>
 	<body>
+		<div id="game"></div>
+		<h1>Sankalpa</h1>
 		<div id="gameboard">
 		</div>
 		<div id="hand">
 		</div>
 		<div id="score">
 		</div>
+		<div id="buttons">
+			<button type="button" onclick="newGame(event)">New Game</button>
+		</div>
+	    <audio id="startAudio">
+	      <source src="audio/magicwand.mp3"/>
+	    </audio>
+	    <audio id="goodPlay">
+	      <source src="audio/xylophone.mp3"/>
+	    </audio>
+	    <audio id="badPlay">
+	      <source src="audio/alarmbeep.mp3"/>
+	    </audio>
 		<script>
 			init();
 		</script>

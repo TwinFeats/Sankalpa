@@ -6,10 +6,30 @@ var pouch = [];
 var handUI;
 var hand = new Array(6);
 var squares;
-var score = 0;
+var total = 0;
 var tileToPlay = null;
+var seed = 0;
 
-function init() {
+function init(gameseed) {
+    if (gameseed) {
+        seed = gameseed;
+        rnd = new Srand(seed);
+        history.replaceState(null, 'Sankalpa', 'https://twinfeats.com/sankalpa?game='+seed);
+        navigator.clipboard.writeText('https://twinfeats.com/sankalpa?game='+seed);
+        document.getElementById("game").innerHTML = seed;
+    } else {
+        var loc = window.location.search;
+        var idx = loc.lastIndexOf("game=");
+        if (idx >= 0) {
+            gameseed = parseInt(loc.substring(idx+5));
+        } else {
+            gameseed = rnd.intInRange(1, 1000000000);
+        }
+        init(gameseed);
+        return;
+    }
+
+
     boardUI = document.getElementById("gameboard");
     var html = "";
     for (var r = 0; r < 6; r++) {
@@ -20,17 +40,23 @@ function init() {
     boardUI.innerHTML = html;
     squares = document.querySelectorAll("#gameboard > *");
     var h = document.getElementById("hand");
-    h.innerHTML = '<div></div><div></div><div></div><div></div><div></div><div class="tileback"></div>';
+    h.innerHTML = '<div></div><div></div><div></div><div></div><div></div><div class="tileback"><span id="count">45<span></div>';
     handUI = document.querySelectorAll("#hand > *");
     newBoard();
 }
 
+function newGame() {
+    init(rnd.intInRange(1, 1000000000));
+}
+
 function newBoard() {
     pouch = [];
-    for (var c1=0;c1<3;c1++) {
-        for (var c2=0;c2<3;c2++) {
-            for (var c3=0;c3<3;c3++) {
-                pouch.push(new Tile(c1, c2, c3, "tile"+(c1*100 + c2*10 + c3)));
+    for (var i=0;i<2;i++) {
+        for (var c1=0;c1<3;c1++) {
+            for (var c2=0;c2<3;c2++) {
+                for (var c3=0;c3<3;c3++) {
+                    pouch.push(new Tile(c1, c2, c3, "tile"+i+""+(c1*100 + c2*10 + c3)));
+                }
             }
         }
     }
@@ -53,17 +79,24 @@ function newBoard() {
     addToHand(pouch.pop(), 1);
     addToHand(pouch.pop(), 2);
     addToHand(pouch.pop(), 3);
+    updateCount();
+}
+
+
+function updateCount() {
+    document.getElementById("count").innerHTML = pouch.length;
 }
 
 function placeTile(tile, row, col) {
     var idx = row * 6 + col;
-    squares[idx].innerHTML = '<img src="tiles/'+tile.symbol+''+tile.fg+'.png" id="'+tile.id+'">';
+    squares[idx].innerHTML = '<img src="/sankalpa/tiles/'+tile.symbol+''+tile.fg+'.png" id="'+tile.id+'">';
     squares[idx].classList.add(tileColors[tile.bg]);
 }
 
 function addToHand(tile, idx) {
     hand[idx] = tile;
-    handUI[idx].innerHTML = '<img src="tiles/'+tile.symbol+''+tile.fg+'.png" ontouchstart="touchTile(event)" id="'+tile.id+'"/>';
+    handUI[idx].innerHTML = '<img src="/sankalpa/tiles/'+tile.symbol+''+tile.fg+'.png" ontouchstart="touchTile(event)" id="'+tile.id+'"/>';
+    handUI[idx].className = "";
     handUI[idx].classList.add(tileColors[tile.bg]);
 }
 
@@ -89,6 +122,8 @@ function placeTileOnSquare(event) {
             if (document.querySelectorAll("#"+square.id > "img").length == 0) {
                 var score = scorePlay(square);
                 if (score > 0) {
+                    goodPlay.play();
+                    score = Math.pow(2, score-1);
                     var idx = -1;
                     var thehand = document.getElementById("hand");
                     if (thehand.children[1] == tileToPlay) idx = 1;
@@ -104,6 +139,14 @@ function placeTileOnSquare(event) {
                     addToHand(pouch.pop(), idx);
 
                     tileToPlay = null;
+                    total += score;
+                    document.getElementById("score").innerHTML = total;
+                    updateCount();
+                    if (document.querySelectorAll("#gameboard img").length == 36) {
+                        total += 100;
+                    }
+                } else {
+                    badPlay.play();
                 }
             }
         }
@@ -151,12 +194,12 @@ function scoreSquare(square) {
     var score = 0;
     var t = document.querySelector("#"+square.id+' > img');
     if (t != null) {
-        var tid = parseInt(t.id.substring(4));
+        var tid = parseInt(t.id.substring(5));
         var t1 = Math.floor(tid/100);
         var t2 = Math.floor((tid - t1*100)/10);
         var t3 = tid % 10;
 
-        var tileid = parseInt(tile.id.substring(4));
+        var tileid = parseInt(tile.id.substring(5));
         var tile1 = Math.floor(tileid/100);
         var tile2 = Math.floor((tileid - tile1*100)/10);
         var tile3 = tileid % 10;
@@ -165,7 +208,7 @@ function scoreSquare(square) {
         if (t2 == tile2) score++;
         if (t3 == tile3) score++;
         if (score == 0) return -1;
-        return Math.pow(2, score-1);
+        return score;
     }
     return 0;
 }
