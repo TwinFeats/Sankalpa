@@ -14,8 +14,8 @@ function init(gameseed) {
     if (gameseed) {
         seed = gameseed;
         rnd = new Srand(seed);
-        history.replaceState(null, 'Sankalpa', 'https://twinfeats.com/sankalpa?game='+seed);
-        navigator.clipboard.writeText('https://twinfeats.com/sankalpa?game='+seed);
+        history.replaceState(null, 'Sankalpa', 'https://twinfeats.com/sankalpa/?game='+seed);
+        navigator.clipboard.writeText('https://twinfeats.com/sankalpa/?game='+seed);
         document.getElementById("game").innerHTML = seed;
     } else {
         var loc = window.location.search;
@@ -89,13 +89,13 @@ function updateCount() {
 
 function placeTile(tile, row, col) {
     var idx = row * 6 + col;
-    squares[idx].innerHTML = '<img src="/sankalpa/tiles/'+tile.symbol+''+tile.fg+'.png" id="'+tile.id+'">';
+    squares[idx].innerHTML = '<img src="tiles/'+tile.symbol+''+tile.fg+'.png" id="'+tile.id+'">';
     squares[idx].classList.add(tileColors[tile.bg]);
 }
 
 function addToHand(tile, idx) {
     hand[idx] = tile;
-    handUI[idx].innerHTML = '<img src="/sankalpa/tiles/'+tile.symbol+''+tile.fg+'.png" ontouchstart="touchTile(event)" id="'+tile.id+'"/>';
+    handUI[idx].innerHTML = '<img src="tiles/'+tile.symbol+''+tile.fg+'.png" ontouchstart="touchTile(event)" id="'+tile.id+'"/>';
     handUI[idx].className = "";
     handUI[idx].classList.add(tileColors[tile.bg]);
 }
@@ -143,7 +143,7 @@ function placeTileOnSquare(event) {
                     document.getElementById("score").innerHTML = total;
                     updateCount();
                     if (document.querySelectorAll("#gameboard img").length == 36) {
-                        total += 100;
+                        total += 50;
                     }
                 } else {
                     badPlay.play();
