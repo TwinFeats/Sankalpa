@@ -14,8 +14,8 @@ function init(gameseed) {
     if (gameseed) {
         seed = gameseed;
         rnd = new Srand(seed);
-        history.replaceState(null, 'Sankalpa', 'https://twinfeats.com/sankalpa/?game='+seed);
-        navigator.clipboard.writeText('https://twinfeats.com/sankalpa/?game='+seed);
+        history.replaceState(null, 'Sankalpa', 'https://www.twinfeats.com/sankalpa/?game='+seed);
+        navigator.clipboard.writeText('https://www.twinfeats.com/sankalpa/?game='+seed);
         document.getElementById("game").innerHTML = seed;
     } else {
         var loc = window.location.search;
@@ -34,7 +34,7 @@ function init(gameseed) {
     var html = "";
     for (var r = 0; r < 6; r++) {
         for (var c = 0; c < 6; c++) {
-            html += '<div id="square'+(r*10 + c)+'" ontouchstart="placeTileOnSquare(event)"></div>';
+            html += '<div id="square'+(r*10 + c)+'" onpointerdown="placeTileOnSquare(event)"></div>';
         }
     }
     boardUI.innerHTML = html;
@@ -95,7 +95,7 @@ function placeTile(tile, row, col) {
 
 function addToHand(tile, idx) {
     hand[idx] = tile;
-    handUI[idx].innerHTML = '<img src="tiles/'+tile.symbol+''+tile.fg+'.png" ontouchstart="touchTile(event)" id="'+tile.id+'"/>';
+    handUI[idx].innerHTML = '<img src="tiles/'+tile.symbol+''+tile.fg+'.png" onpointerdown="touchTile(event)" id="'+tile.id+'"/>';
     handUI[idx].className = "";
     handUI[idx].classList.add(tileColors[tile.bg]);
 }
@@ -105,7 +105,7 @@ function touchTile(event) {
         tileToPlay.classList.remove("selected");
     }
     tileToPlay = null;
-    var tile = find("#hand > *", event.touches[0].clientX, event.touches[0].clientY);
+    var tile = find("#hand > *", event.clientX, event.clientY);
     if (tile != null) {
         tileToPlay = tile;
         tileToPlay.classList.toggle("selected");
@@ -117,7 +117,7 @@ function touchTile(event) {
 
 function placeTileOnSquare(event) {
     if (tileToPlay != null) {
-        var square = find("#gameboard > *", event.touches[0].clientX, event.touches[0].clientY);
+        var square = find("#gameboard > *", event.clientX, event.clientY);
         if (square != null) {
             if (document.querySelectorAll("#"+square.id > "img").length == 0) {
                 var score = scorePlay(square);
