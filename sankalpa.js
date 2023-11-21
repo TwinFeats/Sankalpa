@@ -14,8 +14,8 @@ function init(gameseed) {
     if (gameseed) {
         seed = gameseed;
         rnd = new Srand(seed);
-        history.replaceState(null, 'Sankalpa', 'https://www.twinfeats.com/sankalpa/?game='+seed);
-        navigator.clipboard.writeText('https://www.twinfeats.com/sankalpa/?game='+seed);
+        // history.replaceState(null, 'Sankalpa', 'https://www.twinfeats.com/sankalpa/?game='+seed);
+        // navigator.clipboard.writeText('https://www.twinfeats.com/sankalpa/?game='+seed);
         document.getElementById("game").innerHTML = seed;
     } else {
         var loc = window.location.search;
@@ -43,6 +43,14 @@ function init(gameseed) {
     h.innerHTML = '<div></div><div></div><div></div><div></div><div></div><div class="tileback"><span id="count">45<span></div>';
     handUI = document.querySelectorAll("#hand > *");
     newBoard();
+}
+
+function help() {
+    document.getElementById("rules").classList.add("show");
+}
+
+function closeHelp() {
+    document.getElementById("rules").classList.remove("show");
 }
 
 function newGame() {

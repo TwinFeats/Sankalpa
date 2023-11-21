@@ -33,6 +33,8 @@ button {
   color: white;
   border-style: outset;
   border-width: .2em;
+  margin-left: 1ch;
+  margin-right: 1ch;
   font-size: 1em;
 }
 
@@ -134,13 +136,52 @@ div[class^="tile"] {
   font-size: 18pt;
 }
 
+figure {
+  font-size: .8em;
+  text-align: center;
+}
+
+#rules {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  font-size: .8em;
+  padding: 1em;
+  border: 3px solid ridge gray;
+  overflow: auto;
+  background-color: black;
+}
+
+#rules #close {
+  position: fixed;
+  right: 3px;
+  top: 3px;
+  padding: .2em .4em;
+  border-radius: .25em;
+  line-height: 1;
+  color: white;
+  background-color: red;
+}
+
+#rules img {
+  width: 80%;
+}
+
+.show {
+  display: block !important;
+}
+
 @media screen and (orientation: landscape) {
   html,
   body {
     font-size: 18pt;
   }
 
-  body {
+  body, #rules {
     padding: 1em 35vw;
     box-sizing: border-box;
   }
