@@ -14,8 +14,8 @@ function init(gameseed) {
     if (gameseed) {
         seed = gameseed;
         rnd = new Srand(seed);
-        // history.replaceState(null, 'Sankalpa', 'https://www.twinfeats.com/sankalpa/?game='+seed);
-        // navigator.clipboard.writeText('https://www.twinfeats.com/sankalpa/?game='+seed);
+        history.replaceState(null, 'Sankalpa', 'https://www.twinfeats.com/sankalpa/?game='+seed);
+        navigator.clipboard.writeText('https://www.twinfeats.com/sankalpa/?game='+seed);
         document.getElementById("game").innerHTML = seed;
     } else {
         var loc = window.location.search;
